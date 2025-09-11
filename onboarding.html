@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to FocusMode</title>
+    <style>
+        :root {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #282828;
+            --text-primary: #ffffff;
+            --text-secondary: #eff1f6bf;
+            --accent-green: #00af9b;
+            --border-color: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        .steps {
+            text-align: left;
+            margin: 30px 0;
+            background: var(--bg-primary);
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+        }
+
+        .step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-number {
+            background: var(--accent-green);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .pin-section {
+            background: linear-gradient(135deg, #1e3a8a, #1e40af);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pin-section::before {
+            content: '📌';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.2rem;
+            opacity: 0.7;
+        }
+
+        .pin-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .pin-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .pin-steps {
+            margin-top: 12px;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--accent-green);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #009688;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        .tip {
+            margin-top: 20px;
+            padding: 15px;
+            background: var(--bg-primary);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            border-left: 3px solid var(--accent-green);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 25px;
+                margin: 10px;
+            }
+            
+            .buttons {
+                flex-direction: column;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🎯</div>
+        <h1 class="title">Welcome to FocusMode</h1>
+        <p class="subtitle">Hide distracting elements on LeetCode to improve your focus</p>
+
+        <!-- Pin Extension Section -->
+        <div class="pin-section">
+            <div class="pin-title">📌 Pin This Extension (Recommended)</div>
+            <div class="pin-description">
+                Pin FocusMode to your toolbar for easy access
+            </div>
+            <div class="pin-steps">
+                Click the puzzle piece icon → Find "FocusMode" → Click the pin icon
+            </div>
+        </div>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>Go to any LeetCode problem page</div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>Click the FocusMode icon in your toolbar</div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>Toggle what you want to hide (difficulty, timer, code editor)</div>
+            </div>
+        </div>
+
+        <div class="tip">
+            <strong>💡 Pro Tip:</strong> Double-click any overlay to reveal it instantly during your session
+        </div>
+
+        <div class="buttons">
+            <a href="https://leetcode.com/problems/" target="_blank" class="btn btn-primary">
+                <span>🚀</span>
+                Try on LeetCode
+            </a>
+        </div>
+    </div>
+</body>
+</html>
