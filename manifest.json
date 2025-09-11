@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "FocusMode - For LeetCode",
+  "version": "1.0.0",
+  "description": "Train for your interviews with zero distractions. FocusMode provides clean overlays to individually hide the timer, difficulty, and code editor, helping you improve your focus on the actual problem and reduce anxiety. Double-click any overlay to instantly reveal.",
+  "permissions": [
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://leetcode.com/problems/*",
+        "https://leetcode.com/problemset/*",
+        "https://leetcode.com/studyplan/*"
+      ],
+      "js": ["injector.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://leetcode.com/problems/*",
+        "https://leetcode.com/problemset/*",
+        "https://leetcode.com/studyplan/*"
+      ],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

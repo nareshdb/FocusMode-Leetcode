@@ -1,0 +1,34 @@
+.blurred {
+  position: relative;
+  overflow: hidden;
+}
+
+.blurred::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #282828;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.blurred.revealed::before {
+  opacity: 0;
+}
+
+.generic-difficulty-tag.blurred {
+  min-width: 75px;
+  justify-content: center;
+  text-indent: -9999px;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+}
+
+.generic-difficulty-tag.blurred.revealed {
+  text-indent: 0;
+}

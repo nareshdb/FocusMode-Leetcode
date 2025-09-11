@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LeetCode Focus Settings</title>
+  <style>
+    
+    :root {
+      --bg-primary: #1a1a1a;
+      --bg-secondary: #282828;
+      --text-primary: #eff1f6bf;
+      --text-secondary: #ffffff;
+      --accent-green: #00af9b;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      width: 230px;
+      padding: 16px;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+    }
+
+    h3 {
+      margin-top: 0;
+      margin-bottom: 16px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      font-size: 16px;
+    }
+
+    #settings-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .switch-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      padding: 4px;
+      font-size: 14px;
+    }
+
+    .switch-label input {
+      display: none;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 22px;
+      background-color: var(--bg-secondary);
+      border-radius: 22px;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    .switch::before {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 16px;
+      height: 16px;
+      background-color: white;
+      border-radius: 50%;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .switch-label input:checked + .switch {
+      background-color: var(--accent-green);
+    }
+
+    .switch-label input:checked + .switch::before {
+      transform: translateX(18px);
+    }
+    
+    .hint {
+      font-size: 12px;
+      text-align: center;
+      opacity: 0.6;
+      margin-top: 20px;
+      margin-bottom: 0;
+      border-top: 1px solid var(--bg-secondary);
+      padding-top: 12px;
+    }
+
+  </style>
+</head>
+<body>
+  <h3>FocusMode - For LeetCode</h3>
+  <div id="settings-container">
+    
+    <label class="switch-label" for="toggleDifficulty">
+      <span>Difficulty Level</span>
+      <input type="checkbox" id="toggleDifficulty" data-key="difficulty">
+      <span class="switch"></span>
+    </label>
+    
+    <label class="switch-label" for="toggleTimer">
+      <span>Problem Timer</span>
+      <input type="checkbox" id="toggleTimer" data-key="timer">
+      <span class="switch"></span>
+    </label>
+
+    <label class="switch-label" for="toggleCodeEditor">
+      <span>Code Editor</span>
+      <input type="checkbox" id="toggleCodeEditor" data-key="codeEditor">
+      <span class="switch"></span>
+    </label>
+
+  </div>
+  
+  <p class="hint">
+    Tip: Double-click any overlay to reveal the content for that session.
+  </p>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
