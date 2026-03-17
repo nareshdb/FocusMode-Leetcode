@@ -1,8 +1,8 @@
 # 🎯 FocusMode - For LeetCode
 
-> **Train for your interviews with zero distractions**
+> **Solve your LeetCode problems with zero distractions**
 
-A Chrome extension that helps you focus on solving problems by selectively hiding distracting elements on LeetCode. Perfect for interview preparation when you want to simulate real coding conditions without time pressure or difficulty bias.
+FocusMode provides clean overlays to individually hide the timer, difficulty, question title, and code editor, helping you improve your focus on the actual problem and reduce anxiety. Double-click any overlay to instantly reveal.
 
 ![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)
 ![Version](https://img.shields.io/badge/Version-1.0.0-00af9b?style=for-the-badge)
