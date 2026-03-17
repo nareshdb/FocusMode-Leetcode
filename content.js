@@ -1,5 +1,14 @@
 const selectors = {
-    timer: '[data-cy="timer"]',
+    timer: [
+      '#ide-top-btns .text-sd-blue-400',
+      '#ide-top-btns [aria-label*=":"]',
+      '#ide-top-btns [aria-label="Reset"]',
+      '#ide-top-btns [aria-label="Pause"]',
+      'nav .text-sd-blue-400',
+      'nav [aria-label*=":"]',
+      'nav [aria-label="Reset"]',
+      'nav [aria-label="Pause"]'
+    ].join(', '),
     difficulty: [
       '[class*="text-difficulty-"]',
       'p.text-lc-green-60',
@@ -9,16 +18,41 @@ const selectors = {
       'p.text-sd-medium',
       'p.text-sd-hard'
     ].join(', '),
-    codeEditor: '.monaco-editor'
+    codeEditor: '.monaco-editor',
+    problemTitle: '.text-title-large a[href^="/problems/"]'
   };
 
 const defaultSettings = {
     difficulty: true,
     timer: true,
-    codeEditor: true
+    codeEditor: true,
+    problemTitle: true
 };
 
 let hidingStyleRemoved = false;
+
+function findTimerElementsFallback() {
+    const roots = [document.getElementById('ide-top-btns'), document.querySelector('nav')].filter(Boolean);
+    const elements = [];
+    const timeRe = /^\d{2}:\d{2}:\d{2}$/;
+
+    for (const root of roots) {
+        const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+        let node = walker.nextNode();
+        while (node) {
+            const text = (node.nodeValue || '').trim();
+            if (timeRe.test(text)) {
+                const el = node.parentElement?.closest('[aria-label]') ||
+                           node.parentElement?.closest('button') ||
+                           node.parentElement;
+                if (el) elements.push(el);
+            }
+            node = walker.nextNode();
+        }
+    }
+
+    return elements;
+}
 
 function applyOverlaysFromSettings() {
     if (!hidingStyleRemoved) {
@@ -36,8 +70,19 @@ function applyOverlaysFromSettings() {
 
         const { settings } = data;
         for (const key in selectors) {
-            const elements = document.querySelectorAll(selectors[key]);
-            elements.forEach(element => {
+            let elements = Array.from(document.querySelectorAll(selectors[key]));
+
+            if (key === 'timer') {
+                // Even if selectors match (often hidden controls), also try a text-based fallback
+                // to reliably catch the visible timer pill.
+                const fallbackTimerEls = findTimerElementsFallback();
+                if (fallbackTimerEls.length > 0) {
+                    const merged = new Set([...elements, ...fallbackTimerEls]);
+                    elements = Array.from(merged);
+                }
+            }
+
+            elements.forEach((element) => {
                 if (key === 'difficulty') {
                     element.classList.add('generic-difficulty-tag');
                 }

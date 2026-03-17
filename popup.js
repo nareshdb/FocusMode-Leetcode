@@ -1,7 +1,8 @@
 const defaultSettings = {
     difficulty: true,
     timer: true,
-    codeEditor: true
+    codeEditor: true,
+    problemTitle: true
 };
 
 const settingsContainer = document.getElementById('settings-container');
