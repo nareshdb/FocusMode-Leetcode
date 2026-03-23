@@ -1,26 +1,26 @@
 const selectors = {
     timer: [
-      '#ide-top-btns .text-sd-blue-400',
-      '#ide-top-btns [aria-label*=":"]',
-      '#ide-top-btns [aria-label="Reset"]',
-      '#ide-top-btns [aria-label="Pause"]',
-      'nav .text-sd-blue-400',
-      'nav [aria-label*=":"]',
-      'nav [aria-label="Reset"]',
-      'nav [aria-label="Pause"]'
+        '#ide-top-btns .text-sd-blue-400',
+        '#ide-top-btns [aria-label*=":"]',
+        '#ide-top-btns [aria-label="Reset"]',
+        '#ide-top-btns [aria-label="Pause"]',
+        'nav .text-sd-blue-400',
+        'nav [aria-label*=":"]',
+        'nav [aria-label="Reset"]',
+        'nav [aria-label="Pause"]'
     ].join(', '),
     difficulty: [
-      '[class*="text-difficulty-"]',
-      'p.text-lc-green-60',
-      'p.text-lc-yellow-60',
-      'p.text-lc-red-60',
-      'p.text-sd-easy',
-      'p.text-sd-medium',
-      'p.text-sd-hard'
+        '[class*="text-difficulty-"]',
+        'p.text-lc-green-60',
+        'p.text-lc-yellow-60',
+        'p.text-lc-red-60',
+        'p.text-sd-easy',
+        'p.text-sd-medium',
+        'p.text-sd-hard'
     ].join(', '),
     codeEditor: '.monaco-editor',
     problemTitle: '.text-title-large a[href^="/problems/"]'
-  };
+};
 
 const defaultSettings = {
     difficulty: true,
@@ -43,8 +43,8 @@ function findTimerElementsFallback() {
             const text = (node.nodeValue || '').trim();
             if (timeRe.test(text)) {
                 const el = node.parentElement?.closest('[aria-label]') ||
-                           node.parentElement?.closest('button') ||
-                           node.parentElement;
+                    node.parentElement?.closest('button') ||
+                    node.parentElement;
                 if (el) elements.push(el);
             }
             node = walker.nextNode();
@@ -53,6 +53,8 @@ function findTimerElementsFallback() {
 
     return elements;
 }
+
+let manuallyRevealedKeys = new Set();
 
 function applyOverlaysFromSettings() {
     if (!hidingStyleRemoved) {
@@ -73,8 +75,6 @@ function applyOverlaysFromSettings() {
             let elements = Array.from(document.querySelectorAll(selectors[key]));
 
             if (key === 'timer') {
-                // Even if selectors match (often hidden controls), also try a text-based fallback
-                // to reliably catch the visible timer pill.
                 const fallbackTimerEls = findTimerElementsFallback();
                 if (fallbackTimerEls.length > 0) {
                     const merged = new Set([...elements, ...fallbackTimerEls]);
@@ -88,6 +88,11 @@ function applyOverlaysFromSettings() {
                 }
                 if (settings[key]) {
                     element.classList.add('blurred');
+                    if (manuallyRevealedKeys.has(key)) {
+                        element.classList.add('revealed');
+                    } else {
+                        element.classList.remove('revealed');
+                    }
                 } else {
                     element.classList.remove('blurred', 'revealed');
                 }
@@ -99,8 +104,12 @@ function applyOverlaysFromSettings() {
 document.addEventListener('dblclick', (event) => {
     for (const key in selectors) {
         const clickedTarget = event.target.closest(selectors[key]);
-        if (clickedTarget) {
-            clickedTarget.classList.add('revealed');
+        if (clickedTarget && clickedTarget.classList.contains('blurred')) {
+            if (!manuallyRevealedKeys.has(key)) {
+                manuallyRevealedKeys.add(key);
+                clickedTarget.classList.add('revealed');
+                applyOverlaysFromSettings();
+            }
             return;
         }
     }

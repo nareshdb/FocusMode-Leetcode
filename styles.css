@@ -18,6 +18,7 @@
 
 .blurred.revealed::before {
   opacity: 0;
+  pointer-events: none;
 }
 
 .generic-difficulty-tag.blurred {
