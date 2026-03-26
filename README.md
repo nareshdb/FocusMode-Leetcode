@@ -58,6 +58,10 @@ git clone https://github.com/nareshdb/FocusMode-Leetcode.git
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## 🔒 Privacy Policy
+
+We take your privacy seriously. This extension does not collect or transmit any user data. See our full [Privacy Policy](PRIVACY_POLICY.md) for details.
+
 <div align="center">
 
 **Made with ❤️ for the coding community**
