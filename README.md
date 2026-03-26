@@ -62,6 +62,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 We take your privacy seriously. This extension does not collect or transmit any user data. See our full [Privacy Policy](PRIVACY_POLICY.md) for details.
 
+## ☕ Support
+
+If FocusMode has helped you focus better during your LeetCode practice, consider supporting the project:
+
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://ko-fi.com/nareshb)
+
 <div align="center">
 
 **Made with ❤️ for the coding community**

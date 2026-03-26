@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>LeetCode Focus Settings</title>
   <style>
-    
     :root {
       --bg-primary: #1a1a1a;
       --bg-secondary: #282828;
@@ -69,14 +69,14 @@
       transition: transform 0.2s ease-in-out;
     }
 
-    .switch-label input:checked + .switch {
+    .switch-label input:checked+.switch {
       background-color: var(--accent-green);
     }
 
-    .switch-label input:checked + .switch::before {
+    .switch-label input:checked+.switch::before {
       transform: translateX(18px);
     }
-    
+
     .hint {
       font-size: 12px;
       text-align: center;
@@ -87,18 +87,35 @@
       padding-top: 12px;
     }
 
+    .support-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--accent-green);
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+
+    .support-link:hover {
+      opacity: 1;
+    }
   </style>
 </head>
+
 <body>
   <h3>FocusMode - For LeetCode</h3>
   <div id="settings-container">
-    
+
     <label class="switch-label" for="toggleDifficulty">
       <span>Difficulty Level</span>
       <input type="checkbox" id="toggleDifficulty" data-key="difficulty">
       <span class="switch"></span>
     </label>
-    
+
     <label class="switch-label" for="toggleTimer">
       <span>Problem Timer</span>
       <input type="checkbox" id="toggleTimer" data-key="timer">
@@ -118,11 +135,16 @@
     </label>
 
   </div>
-  
+
   <p class="hint">
     Tip: Double-click any overlay to reveal the content for that session.
   </p>
-  
+
+  <a href="https://ko-fi.com/nareshb" target="_blank" class="support-link">
+    <span>☕</span> Support this project
+  </a>
+
   <script src="popup.js"></script>
 </body>
+
 </html>
