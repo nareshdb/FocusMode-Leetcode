@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "FocusMode - For LeetCode",
   "version": "1.0.0",
-  "description": "Solve your LeetCode problems with zero distractions. FocusMode provides clean overlays to individually hide the timer, difficulty, question title, and code editor, helping you improve your focus on the actual problem and reduce anxiety. Double-click any overlay to instantly reveal.",
+  "description": "Solve LeetCode problems with zero distractions. Hide the timer, difficulty, and more to improve focus and reduce anxiety.",
   "permissions": [
     "storage"
   ],
