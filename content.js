@@ -30,6 +30,8 @@ const defaultSettings = {
 };
 
 let hidingStyleRemoved = false;
+let originalTitle = document.title;
+const FOCUS_TITLE = "LeetCode - FocusMode";
 
 function findTimerElementsFallback() {
     const roots = [document.getElementById('ide-top-btns'), document.querySelector('nav')].filter(Boolean);
@@ -98,6 +100,16 @@ function applyOverlaysFromSettings() {
                 }
             });
         }
+
+        // Handle browser tab title
+        if (settings.problemTitle && !manuallyRevealedKeys.has('problemTitle')) {
+            if (document.title !== FOCUS_TITLE) {
+                originalTitle = document.title;
+                document.title = FOCUS_TITLE;
+            }
+        } else if (document.title === FOCUS_TITLE) {
+            document.title = originalTitle;
+        }
     });
 }
 
@@ -124,3 +136,14 @@ chrome.runtime.onMessage.addListener((request) => {
     }
     return true;
 });
+
+// Observe title changes to prevent LeetCode from overriding our focus title
+const titleElement = document.querySelector('title');
+if (titleElement) {
+    const titleObserver = new MutationObserver(() => {
+        if (document.title !== FOCUS_TITLE) {
+            applyOverlaysFromSettings();
+        }
+    });
+    titleObserver.observe(titleElement, { childList: true });
+}
