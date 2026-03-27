@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "FocusMode - For LeetCode",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Solve LeetCode problems with zero distractions. Hide the timer, difficulty, and more to improve focus and reduce anxiety.",
   "permissions": [
     "storage"
